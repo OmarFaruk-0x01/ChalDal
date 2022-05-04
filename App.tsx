@@ -4,13 +4,15 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import HomeScreen from './src/Screens/HomeScreen';
-
+import CustomDrawer from './src/Navigations/CustomDrawer';
 const StackNav = createNativeStackNavigator();
 const DrawerNav = createDrawerNavigator();
 
 const DrawerNavScreens: FC<{}> = () => {
   return (
-    <DrawerNav.Navigator screenOptions={{headerShown: false}}>
+    <DrawerNav.Navigator
+      drawerContent={props => <CustomDrawer {...props} />}
+      screenOptions={{headerShown: false}}>
       <DrawerNav.Screen name="Home" component={HomeScreen} />
     </DrawerNav.Navigator>
   );

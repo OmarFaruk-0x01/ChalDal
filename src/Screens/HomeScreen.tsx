@@ -1,4 +1,3 @@
-import { DrawerScreenProps } from '@react-navigation/drawer';
 import { DrawerActions, useNavigation } from '@react-navigation/native';
 import React, {FC} from 'react';
 import {SafeAreaView, Text} from 'react-native';
@@ -6,7 +5,12 @@ import {WebView} from 'react-native-webview';
 const InjectJavaScript = `
 (function() {
   document.querySelector('.topMenu.vertical').children[0].dataset.reactid = 0
+  document.querySelector("button.start_shopping_btn").dataset.reactid = 0
   document.querySelector("div.hamBergerMenuIcon").addEventListener('click', function(){
+    window.ReactNativeWebView.postMessage(JSON.stringify({isNavOpen : true}));
+    document.querySelector("button.hamburgerMenu").classList.remove('change');
+  });
+  document.querySelector("button.start_shopping_btn").addEventListener('click', function(){
     window.ReactNativeWebView.postMessage(JSON.stringify({isNavOpen : true}));
     document.querySelector("button.hamburgerMenu").classList.remove('change');
   });

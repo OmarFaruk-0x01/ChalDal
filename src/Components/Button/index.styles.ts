@@ -9,7 +9,7 @@ const ButtonStyles = StyleSheet.create({
         borderRadius: 5,
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'flex-start',
+        justifyContent: 'space-between',
 
     },
     buttonTitle: {

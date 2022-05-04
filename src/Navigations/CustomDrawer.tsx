@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
-  DrawerView,
   DrawerContentComponentProps,
   DrawerContentScrollView,
 } from '@react-navigation/drawer';
@@ -9,20 +8,22 @@ import {Image, Text, TouchableOpacity, View} from 'react-native';
 import Button from '../Components/Button';
 import Catagories, {CategoryType} from '../Constants/Cetagories';
 import Colors from '../Constants/Colors';
+import RecursiveList from '../Components/RecursiveList';
 
 const CustomDrawer: FC<DrawerContentComponentProps> = props => {
-  function renderRecurveList(cetalist: CategoryType[]) {
-    return cetalist.map(ceta => (
-      <View key={ceta.slug} style={{borderLeftWidth: .2, borderRightColor: '#0000'}}>
-        <Button imgUrl={ceta.imgUrl} title={ceta.title} />
-        {ceta.children ? <View style={{marginLeft: 20}}>{renderRecurveList(ceta.children)}</View> : null}
-      </View>
-    ));
-  }
-
+  const [activeRoute, setActiveRoute] = useState<string>('Home');
+  console.log(activeRoute);
+  
   return (
     <DrawerContentScrollView {...props}>
-      <View style={{alignItems: 'center', justifyContent: 'center'}}>
+      <View
+        style={{
+          alignItems: 'center',
+          justifyContent: 'center',
+          margin: 5,
+          backgroundColor: Colors.primary,
+          borderRadius: 10,
+        }}>
         <Image
           resizeMethod="auto"
           resizeMode="contain"
@@ -32,10 +33,11 @@ const CustomDrawer: FC<DrawerContentComponentProps> = props => {
           }}
         />
       </View>
-      <Button title="Offers" />
-      <Button title="Food Aid" />
-      <Button title="Recipes" />
-      {renderRecurveList(Catagories)}
+      <Button title="Home" active={activeRoute == 'Home'} />
+      <Button title="Offers" active={activeRoute == 'Offers'} />
+      <Button title="Food Aid" active={activeRoute == 'Food Aid'} />
+      <Button title="Recipes" active={activeRoute == 'Recipes'} />
+      <RecursiveList parantTitle={''} dataList={Catagories} activeRoute={activeRoute} setActiveRoute={setActiveRoute} />
     </DrawerContentScrollView>
   );
 };

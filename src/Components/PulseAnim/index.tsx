@@ -62,9 +62,7 @@ export default function PulseAnim() {
         <Image
           resizeMode="contain"
           style={styles.innerCircle}
-          source={{
-            uri: 'https://pngimg.com/uploads/egg/small/egg_PNG97984.png',
-          }}
+          source={require('../../../assets/imgs/egg.png')}
         />
 
         {pulse.map((item, index) => (

@@ -1,8 +1,9 @@
 import {DrawerActions, useNavigation, useRoute} from '@react-navigation/native';
 import React, {FC, useRef, useState} from 'react';
-import {Alert, SafeAreaView, Text, View} from 'react-native';
+import {Alert, SafeAreaView, StatusBar, Text, View} from 'react-native';
 import {WebView} from 'react-native-webview';
 import PulseAnim from '../Components/PulseAnim';
+import Colors from '../Constants/Colors';
 const InjectJavaScript = `
 (function() {
   document.querySelector('.topMenu.vertical').children[0].dataset.reactid = 0
@@ -33,11 +34,13 @@ const HomeScreen: FC<{}> = () => {
   const [isLoad, setLoad] = useState(false);
  
   return (
-    <SafeAreaView style={{flex: 1}} pointerEvents={!isLoad ? 'auto' : 'none'}>
+    <SafeAreaView style={{ flex: 1 }} pointerEvents={!isLoad ? 'auto' : 'none'}>
+      <StatusBar barStyle={'dark-content'} backgroundColor={Colors.primary} />
       {isLoad && <PulseAnim />}
-      <View style={{ position: 'absolute', width: '100%', backgroundColor: '#0006', top: '50%', zIndex: 10,  }}>
-        <Text style={{ fontSize: 30, color: '#fff', textAlign: 'center' }}>ChalDal Demo App {'\n'}(Web => Android/IOS)</Text>
-      </View>
+      {!isLoad && <View style={{ position: 'absolute', width: '100%', backgroundColor: '#0006', top: '50%', zIndex: 10, }}>
+        <Text style={{ fontSize: 30, color: '#fff', textAlign: 'center' }}>
+          ChalDal Demo App {'\n'}(Web ={'>'} Android/IOS)</Text>
+      </View>}
       <WebView
         // @ts-ignore
         ref={REF => (webRef.current = REF)}

@@ -77,7 +77,7 @@ const CustomDrawer: FC<DrawerContentComponentProps> = props => {
             <View style={styles.modalView}>
               <Text
                 style={{
-                  fontSize: 20,
+                  fontSize: 25,
                   textAlign: 'center',
                   marginVertical: 10,
                   color: Colors.black,
@@ -85,8 +85,16 @@ const CustomDrawer: FC<DrawerContentComponentProps> = props => {
                 About Developer
               </Text>
               <View style={{flexDirection: 'row', marginBottom: 5}}>
-                <Text style={styles.modalText}>Name: </Text>
-                <Text style={styles.modalText}>Omar Faruk</Text>
+                <Text
+                  style={[styles.modalText, {fontSize: 18, fontWeight: '600'}]}>
+                  Omar Faruk<Text style={{ fontSize: 13, fontWeight: '400' }}>{" "}(Junior Developer)</Text>
+                </Text>
+              </View>
+              <View style={{flexDirection: 'row', marginBottom: 5}}>
+                <Text
+                  style={[styles.modalText, {fontSize: 15, fontWeight: '500'}]}>
+                  React/Next - React Native - TypeScript
+                </Text>
               </View>
               <View style={{flexDirection: 'row', marginBottom: 5}}>
                 <Text style={styles.modalText}>

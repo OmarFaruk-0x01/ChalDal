@@ -33,9 +33,7 @@ const CustomDrawer: FC<DrawerContentComponentProps> = props => {
           resizeMethod="auto"
           resizeMode="contain"
           style={{width: '80%', height: 200}}
-          source={{
-            uri: 'https://chaldn.com/asset/Egg.ChaldalWeb.Fabric/Egg.ChaldalWeb1/1.0.0+Deploy-Release-25/Default/components/header/Header/images/logo-small.png?q=low&webp=1&alpha=1',
-          }}
+          source={require('../../assets/imgs/logo-small.png')}
         />
       </View>
       <Button

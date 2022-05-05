@@ -38,7 +38,7 @@ const Catagories: CategoryType[] = [
               children: [
                   {
                       title: 'Butter & Sour Cream',
-                      slug: 'butter-sour-cream'
+                      slug: '/butter-sour-cream'
                   }
               ]
           }

@@ -23,6 +23,7 @@ const App: React.FC<{}> = () => {
     <NavigationContainer>
       <StackNav.Navigator screenOptions={{headerShown: false}}>
         <StackNav.Screen name="main" component={DrawerNavScreens} />
+      
       </StackNav.Navigator>
     </NavigationContainer>
   );

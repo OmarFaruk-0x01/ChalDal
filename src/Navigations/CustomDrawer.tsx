@@ -12,8 +12,11 @@ import RecursiveList from '../Components/RecursiveList';
 
 const CustomDrawer: FC<DrawerContentComponentProps> = props => {
   const [activeRoute, setActiveRoute] = useState<string>('Home');
-  console.log(activeRoute);
-  
+  const {navigation} = props
+  function onPress(activeRoute:string,slug: string) {
+    
+    return () => { setActiveRoute(activeRoute); navigation.navigate('Home', { slug }); }
+  }
   return (
     <DrawerContentScrollView {...props}>
       <View
@@ -33,11 +36,33 @@ const CustomDrawer: FC<DrawerContentComponentProps> = props => {
           }}
         />
       </View>
-      <Button title="Home" active={activeRoute == 'Home'} />
-      <Button title="Offers" active={activeRoute == 'Offers'} />
-      <Button title="Food Aid" active={activeRoute == 'Food Aid'} />
-      <Button title="Recipes" active={activeRoute == 'Recipes'} />
-      <RecursiveList parantTitle={''} dataList={Catagories} activeRoute={activeRoute} setActiveRoute={setActiveRoute} />
+      <Button
+        title="Home"
+        active={activeRoute == 'Home'}
+        onPress={onPress('Home', '/')}
+      />
+      <Button
+        title="Offers"
+        active={activeRoute == 'Offers'}
+        onPress={onPress('Offers', '/offers')}
+      />
+      <Button
+        title="Food Aid"
+        active={activeRoute == 'Food Aid'}
+        onPress={onPress('Food Aid', '/donation')}
+      />
+      <Button
+        title="Recipes"
+        active={activeRoute == 'Recipes'}
+        onPress={onPress('Recipes', '/recipes')}
+      />
+      <RecursiveList
+        
+        parantTitle={''}
+        dataList={Catagories}
+        activeRoute={activeRoute}
+        setActiveRoute={setActiveRoute}
+      />
     </DrawerContentScrollView>
   );
 };

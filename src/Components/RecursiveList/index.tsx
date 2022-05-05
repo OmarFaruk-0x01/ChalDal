@@ -1,3 +1,4 @@
+import {useNavigation} from '@react-navigation/native';
 import React, {FC, useEffect, useRef, useState} from 'react';
 import {View} from 'react-native';
 import Button from '../Button';
@@ -5,14 +6,18 @@ import {RecursiveListProps} from './index.interface';
 const RecursiveList: FC<RecursiveListProps> = ({
   dataList,
   activeRoute,
-    setActiveRoute,
+  setActiveRoute,
   parantTitle,
   ...props
 }) => {
-    const [activeSubList, setActiveSubList] = useState<boolean>(false);
-    
-  
-    
+  const navigation = useNavigation();
+  function onPress(activeRoute: string, slug: string) {
+    return () => {
+      // @ts-ignore
+      navigation.navigate('Home', {slug});
+    };
+  }
+
   return (
     <View {...props}>
       {dataList.map(ceta => (
@@ -25,6 +30,7 @@ const RecursiveList: FC<RecursiveListProps> = ({
             showIcon={(ceta.children?.length || 0) > 0}
             active={activeRoute.endsWith(ceta.title)}
             onPress={() => {
+              onPress(ceta.title, ceta.slug)();
               setActiveRoute(parantTitle + '***' + ceta.title);
             }}
             onIconPress={() => {}}

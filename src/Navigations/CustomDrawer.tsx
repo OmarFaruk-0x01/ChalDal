@@ -172,7 +172,7 @@ const CustomDrawer: FC<DrawerContentComponentProps> = props => {
               </View>
 
               <Pressable
-                style={[{position: 'absolute', right: -10, top: -10}]}
+                style={[{position: 'absolute', right: -10, top: -10 , borderRadius: 50, overflow: 'hidden'}]}
                 onPress={() => setModalVisible(!modalVisible)}>
                 <Text
                   style={[

@@ -42,6 +42,7 @@ const HomeScreen: FC<{}> = () => {
           ChalDal Demo App {'\n'}(Web ={'>'} Android/IOS)</Text>
       </View>}
       <WebView
+        geolocationEnabled={false}
         // @ts-ignore
         ref={REF => (webRef.current = REF)}
         renderLoading={() => <PulseAnim />}

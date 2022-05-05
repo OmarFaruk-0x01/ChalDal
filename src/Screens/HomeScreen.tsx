@@ -35,6 +35,9 @@ const HomeScreen: FC<{}> = () => {
   return (
     <SafeAreaView style={{flex: 1}} pointerEvents={!isLoad ? 'auto' : 'none'}>
       {isLoad && <PulseAnim />}
+      <View style={{ position: 'absolute', width: '100%', backgroundColor: '#0006', top: '50%', zIndex: 10,  }}>
+        <Text style={{ fontSize: 30, color: '#fff', textAlign: 'center' }}>ChalDal Demo App {'\n'}(Web => Android/IOS)</Text>
+      </View>
       <WebView
         // @ts-ignore
         ref={REF => (webRef.current = REF)}

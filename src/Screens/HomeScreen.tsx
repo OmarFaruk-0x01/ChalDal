@@ -1,6 +1,6 @@
 import {DrawerActions, useNavigation, useRoute} from '@react-navigation/native';
-import React, {FC, useState} from 'react';
-import {SafeAreaView, Text, View} from 'react-native';
+import React, {FC, useRef, useState} from 'react';
+import {Alert, SafeAreaView, Text, View} from 'react-native';
 import {WebView} from 'react-native-webview';
 import PulseAnim from '../Components/PulseAnim';
 const InjectJavaScript = `
@@ -29,14 +29,27 @@ const InjectJavaScript = `
 const HomeScreen: FC<{}> = () => {
   const nav = useNavigation();
   const route = useRoute();
+  const webRef = useRef();
   const [isLoad, setLoad] = useState(false);
  
   return (
     <SafeAreaView style={{flex: 1}} pointerEvents={!isLoad ? 'auto' : 'none'}>
       {isLoad && <PulseAnim />}
       <WebView
+        // @ts-ignore
+        ref={REF => (webRef.current = REF)}
         renderLoading={() => <PulseAnim />}
         startInLoadingState={true}
+        onError={(ev) => {
+          if (ev.nativeEvent.code == -2) {
+            Alert.alert("Failure!", "Something went wrong! Please Check Your Internet Connection.", [{
+              text: 'Retry', onPress: () => {
+                // @ts-ignore
+                (webRef && webRef.current.reload());
+            }}])
+          }
+          
+        }}
         injectedJavaScript={InjectJavaScript}
         source={{
           uri:
